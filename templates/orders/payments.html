@@ -127,7 +127,9 @@
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
 
+
 <script>
+
 	function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -143,55 +145,57 @@
     }
     return cookieValue;
 }
+
 	var amount = "{{ grand_total }}"
 	var url = "{% url 'payments' %}"
 	var csrftoken = getCookie('csrftoken');
-	var orderID = "{{ order.order_number }}"
+	var orderID = "{{order.order_number}}"
 	var payment_method = 'PayPal'
 	var redirect_url = "{% url 'order_complete' %}"
-
-	// Render the PayPal button into #paypal-button-containver
+	// Render the PayPal button into #paypal-button-container
 	paypal.Buttons({
-		// Sets up the transaction when a payment button is clicked
-		createOrder: (data, actions) => {
-				return actions.order.create({
-					purchase_units: [
-						{
-							amount: {
-								value: amount, // Can also reference a variable or function
-							},
-						},
-					],
-				});
-			},
-			// Finalize the transaction after payer approval
-			onApprove: (data, actions) => {
-				return actions.order.capture().then(function (details) {
-					// Show a success message to the buyer
-					console.log(details);
-					// Send data to the database
-					sendData();
-					async function sendData() {
-						const response = await fetch(url, {
-							method: "POST",
-							headers: {
-								"Content-type": "application/json",
-								"X-CSRFToken": csrftoken,
-							},
-							body: JSON.stringify({
-								orderID: orderID,
-								transID: details.id,
-								payment_method: payment_method, // create the payment method
-								status: details.status,
-							}),
-						})
-						const data = await response.json();
-						window.location.href = redirect_url + '?order_number='+data.order_number+'%payment_id='+data.transID;
+
+		// Set up the transaction
+		createOrder: function(data, actions) {
+			return actions.order.create({
+				purchase_units: [{
+					amount: {
+						value: amount,
 					}
-				});
-			},
-		})
-	.render("#paypal-button-container");
+				}]
+			});
+		},
+
+		// Finalize the transaction
+		onApprove: function(data, actions) {
+			return actions.order.capture().then(function(details) {
+				// Show a success message to the buyer
+				console.log(details);
+				sendData();
+				function sendData(){
+					fetch(url, {
+						method : "POST",
+						headers: {
+							"Content-type": "application/json",
+							"X-CSRFToken": csrftoken,
+						},
+						body: JSON.stringify({
+							orderID: orderID,
+							transID: details.id,
+							payment_method: payment_method,
+							status: details.status,
+						}),
+					})
+				  .then((response) => response.json())
+				  .then((data) => {
+						window.location.href = redirect_url + '?order_number='+data.order_number+'&payment_id='+data.transID;
+					});
+				}
+			});
+		}
+
+
+	}).render('#paypal-button-container');
 </script>
 
 {% endblock %}
