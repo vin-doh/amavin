@@ -39,7 +39,7 @@
                                         <li><strong>Order</strong> #{{order.order_number}}</li>
                                         <li><strong>Transaction ID</strong> {{order.payment.payment_id}}</li>
                                         <li><strong>Order Date:</strong> {{order.created_at}}</li>
-                                        <li><strong>Status:</strong> {{order.payment.status}}</li>
+                                        <li><strong>Status:</strong> {{ order.status }}</li> <!-- Display the order status instead of payment status -->
                                     </ul>
                                 </div>
                             </div>
@@ -102,6 +102,10 @@
         </div>
         <!-- col-lg-12 end here -->
     </div>
+        <a href="{% url 'my_orders' %}" class="btn btn-primary">Back to My Orders</a>
+        
+        <a href="{% url 'track_order' order.order_number %}" class="btn btn-primary">Check Status</a>
+
     </div>
 
 

@@ -296,3 +296,14 @@ def order_detail(request, order_id):
         'subtotal': subtotal,
     }
     return render(request, 'accounts/order_detail.html', context)
+
+
+@login_required(login_url='login')
+def track_order(request, order_id):
+    # Retrieve the order object
+    order = get_object_or_404(Order, order_number=order_id)
+
+    # Render the track order template with the order object
+    context = {'order': order}
+
+    return render(request, 'accounts/track_order.html', context)
