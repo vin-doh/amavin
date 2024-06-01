@@ -14,7 +14,7 @@ import os
 from pathlib import Path
 from decouple import config
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Define BASE_DIR directly in your settings.py
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True, cast=bool) # True
+DEBUG = config('DEBUG', default=True, cast=bool) # False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['amavin.azurewebsites.net']
 
 
 # Application definition
@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -130,14 +131,21 @@ USE_I18N = True
 USE_TZ = True
 
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR /'static'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Absolute path to the directory where collectstatic will collect static files
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Absolute path to additional directories containing static files
 STATICFILES_DIRS = [
-    'vincart/static',
+    BASE_DIR / 'vincart' / 'static',
 ]
+
 
 # media files configurations
 MEDIA_URL = '/media/'
