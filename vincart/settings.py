@@ -161,16 +161,16 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 
-# smtp configuration
-EMAIL_BACKEND= 'django.core.mail.backends.smtp.EmailBackend'
+# # smtp configuration
+# EMAIL_BACKEND= 'django.core.mail.backends.smtp.EmailBackend'
 
-# EMAIL_BACKEND = config('EMAIL_BACKEND')
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT = config('EMAIL_PORT', cast=int)
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')  # Make sure this is the correct app password
-EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
-DEFAULT_FROM_EMAIL = config('EMAIL_HOST_USER')  # Ensure the default from email is set
+# # EMAIL_BACKEND = config('EMAIL_BACKEND')
+# EMAIL_HOST = config('EMAIL_HOST')
+# EMAIL_PORT = config('EMAIL_PORT', cast=int)
+# EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')  # Make sure this is the correct app password
+# EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+# DEFAULT_FROM_EMAIL = config('EMAIL_HOST_USER')  # Ensure the default from email is set
 
 
 # Default primary key field type
