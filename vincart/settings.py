@@ -26,9 +26,11 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = config('DEBUG', default=True, cast=bool) # False
-DEBUG = False
+DEBUG = config('DEBUG', default=True, cast=bool) # True
+#DEBUG = False
 
-ALLOWED_HOSTS = ['amavin.azurewebsites.net']
+#ALLOWED_HOSTS = ['amavin.azurewebsites.net']
+ALLOWED_HOSTS = []
 
 
 # Application definition
