@@ -48,8 +48,6 @@ INSTALLED_APPS = [
     'carts',
     'orders',
     # 'admin_honeypot',
-    'whitenoise.runserver_nostatic',
-    'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [
