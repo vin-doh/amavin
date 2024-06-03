@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
-from decouple import config
 
 # Define BASE_DIR directly in your settings.py
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,14 +21,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = config('SECRET_KEY')
 SECRET_KEY = 'django-insecure-)-()gdi%%@l*!n!hh+kb!^v#pky_npu%if+!yeu13$$fc&@pdl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = config('DEBUG', default=True, cast=bool) # True
 DEBUG = True
 
-#ALLOWED_HOSTS = ['amavin.azurewebsites.net']
 ALLOWED_HOSTS = []
 
 
@@ -47,12 +43,10 @@ INSTALLED_APPS = [
     'store',
     'carts',
     'orders',
-    # 'admin_honeypot',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -134,20 +128,14 @@ USE_I18N = True
 USE_TZ = True
 
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Absolute path to the directory where collectstatic will collect static files
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-# Absolute path to additional directories containing static files
-STATICFILES_DIRS = [
-    BASE_DIR / 'vincart' / 'static',
-]
+STATICFILES_DIRS = (str(BASE_DIR.joinpath('vincart/static')),)
+STATIC_URL = '/vincart/static/'
 
 
 # media files configurations
@@ -162,15 +150,14 @@ MESSAGE_TAGS = {
 }
 
 # # smtp configuration
-# EMAIL_BACKEND= 'django.core.mail.backends.smtp.EmailBackend'
 
-# # EMAIL_BACKEND = config('EMAIL_BACKEND')
-# EMAIL_HOST = config('EMAIL_HOST')
-# EMAIL_PORT = config('EMAIL_PORT', cast=int)
-# EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')  # Make sure this is the correct app password
-# EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
-# DEFAULT_FROM_EMAIL = config('EMAIL_HOST_USER')  # Ensure the default from email is set
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp-mail.outlook.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'cisneros.armando.2021@outlook.com'
+EMAIL_HOST_PASSWORD = 'xunqgctpgdpecmyl'
+DEFAULT_FROM_EMAIL = 'cisneros.armando.2021@outlook.com'  # Ensure the default from email is set
 
 
 # Default primary key field type
