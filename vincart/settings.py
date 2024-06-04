@@ -143,7 +143,7 @@ USE_TZ = True
 
 # STATICFILES_DIRS = (str(BASE_DIR.joinpath('vincart/static')),)
 # STATIC_URL = '/vincart/static/'
-STATIC_URL = '/static/'
+STATIC_URL = '/vincart/static/'
 STATIC_ROOT = BASE_DIR /'static'
 STATICFILES_DIRS = [
     'vincart/static',
