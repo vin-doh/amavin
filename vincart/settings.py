@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-)-()gdi%%@l*!n!hh+kb!^v#pky_npu%if+!yeu13$$fc&@pdl'
 SECRET_KEY = os.environ.get('SECRET_KEY')
-# SECRET_KEY = os.environ.get('SECRET_KEY', 'your_new_secret_django-insecure-)-()gdi%%@l*!n!hh+kb!^v#pky_npu%if+!yeu13$$fc&@pdlkey_here')
+# SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-)-()gdi%%@l*!n!hh+kb!^v#pky_npu%if+!yeu13$$fc&@pdl')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
@@ -124,6 +124,7 @@ DATABASES['default'] = dj_database_url.parse(database_url)
 # if database_url:
 #     DATABASES['default'] = dj_database_url.parse(database_url)
 
+
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -158,24 +159,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# STATICFILES_DIRS = (str(BASE_DIR.joinpath('vincart/static')),)
-# STATIC_URL = '/vincart/static/'
-# STATIC_URL = 'static/'
-# STATIC_ROOT = BASE_DIR /'static'
-# STATICFILES_DIRS = [
-#     'vincart/static',
-# ]
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATIC_URL = 'static/'
-
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static/')
+    os.path.join(BASE_DIR, 'vincart', 'static'),
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # media files configurations
