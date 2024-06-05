@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
+import socket
 import dj_database_url
 
 
@@ -29,8 +30,12 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = os.environ.get('DEBUG', 'False').lower() == 'false'
-# DEBUG = os.environ.get('DEBUG', 'False').lower() == 'false'
+# Check if the hostname contains the Render.com domain
+DEBUG = not socket.gethostname().endswith('.onrender.com')
+
+# If DEBUG is set as an environment variable, override the above setting
+if 'DEBUG' in os.environ:
+    DEBUG = os.environ['DEBUG'] == 'True'# DEBUG = os.environ.get('DEBUG', 'False').lower() == 'false'
 
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
