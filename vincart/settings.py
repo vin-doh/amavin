@@ -190,9 +190,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp-mail.outlook.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'cisneros.armando.2021@outlook.com'
-EMAIL_HOST_PASSWORD = 'xunqgctpgdpecmyl'
-DEFAULT_FROM_EMAIL = 'cisneros.armando.2021@outlook.com'  # Ensure the default from email is set
+EMAIL_HOST_USER = 'hi.amavin@hotmail.com'
+EMAIL_HOST_PASSWORD = 'uxkdfskzehydzjjq'
+DEFAULT_FROM_EMAIL = 'hi.amavin@hotmail.com'  # Ensure the default from email is set
 
 
 # Default primary key field type
