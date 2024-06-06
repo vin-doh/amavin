@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
-import socket
 import dj_database_url
 
 
@@ -24,18 +23,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-)-()gdi%%@l*!n!hh+kb!^v#pky_npu%if+!yeu13$$fc&@pdl'
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = 'django-insecure-)-()gdi%%@l*!n!hh+kb!^v#pky_npu%if+!yeu13$$fc&@pdl'
+# SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-)-()gdi%%@l*!n!hh+kb!^v#pky_npu%if+!yeu13$$fc&@pdl')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
+DEBUG = False
 # Check if the hostname contains the Render.com domain
-DEBUG = os.environ.get('DEBUG')
+# DEBUG = os.environ.get('DEBUG')
 
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'amavin.onrender.com']
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
+# ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
 # ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
 
 
@@ -100,19 +100,6 @@ AUTH_USER_MODEL = 'accounts.Account'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-database_url = os.environ.get('DATABASE_URL')
-DATABASES['default'] = dj_database_url.parse(database_url)
-
-
-
-# # Define the default SQLite database configuration
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -120,12 +107,25 @@ DATABASES['default'] = dj_database_url.parse(database_url)
 #     }
 # }
 
-# # Get the database URL from the environment variable
 # database_url = os.environ.get('DATABASE_URL')
+# DATABASES['default'] = dj_database_url.parse('database_url')
 
-# # If the DATABASE_URL environment variable is set, parse it and update DATABASES
-# if database_url:
-#     DATABASES['default'] = dj_database_url.parse(database_url)
+
+
+# Define the default SQLite database configuration
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+# Get the database URL from the environment variable
+database_url = os.environ.get('DATABASE_URL')
+
+# If the DATABASE_URL environment variable is set, parse it and update DATABASES
+if database_url:
+    DATABASES['default'] = dj_database_url.parse(database_url)
 
 
 # Password validation
@@ -164,13 +164,43 @@ USE_TZ = True
 
 
 
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = [
+#     BASE_DIR / 'static',
+# ]
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# # Base directory of your Django project
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# # Static files (CSS, JavaScript, Images)
+# # https://docs.djangoproject.com/en/3.2/howto/static-files/
+
+# # URL prefix for static files.
+# # Example: "http://example.com/static/", "http://static.example.com/"
+# STATIC_URL = '/static/'
+
+# # Additional locations of static files
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'staticfiles'),  # Assuming 'staticfiles' is the directory containing your static files
+# ]
+
+# # Absolute path to the directory where collectstatic will collect static files for deployment.
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_root')
+
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# # Add media files handling (if you have media files)
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 
 # media files configurations
@@ -190,9 +220,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp-mail.outlook.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'cisneros.armando.2021@outlook.com'
-EMAIL_HOST_PASSWORD = 'xunqgctpgdpecmyl'
-DEFAULT_FROM_EMAIL = 'cisneros.armando.2021@outlook.com'  # Ensure the default from email is set
+EMAIL_HOST_USER = 'hi.amavin@hotmail.com'
+EMAIL_HOST_PASSWORD = 'uxkdfskzehydzjjq'
+DEFAULT_FROM_EMAIL = 'hi.amavin@hotmail.com'  # Ensure the default from email is set
 
 
 # Default primary key field type
