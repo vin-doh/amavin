@@ -1,4 +1,0 @@
-{
-    "appService.defaultWebAppToDeploy": "/subscriptions/b09996db-a2c7-4138-be1b-aebb23bfe32e/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/amavin",
-    "appService.deploySubpath": "."
-}

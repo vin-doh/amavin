@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
-import dj_database_url
+# import dj_database_url
 
 
 # Define BASE_DIR directly in your settings.py
@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-)-()gdi%%@l*!n!hh+kb!^v#pky_npu%if+!yeu13$$fc&@pdl
 # SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-)-()gdi%%@l*!n!hh+kb!^v#pky_npu%if+!yeu13$$fc&@pdl')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 # Check if the hostname contains the Render.com domain
 # DEBUG = os.environ.get('DEBUG')
 
